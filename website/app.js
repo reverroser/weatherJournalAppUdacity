@@ -1,4 +1,13 @@
-// Async POST
+// Personal API Key for OpenWeatherMap API
+let apiKey = '373161157a0c9e297334f502c0cfadcd';
+
+// Event listener to add function to existing HTML DOM element
+
+/* Function called by event listener */
+
+/* Function to GET Web API Data*/
+
+/* Function to POST data */
 const postData = async (url = '', data = {}) => {
     const response = await fetch(url, {
         method: 'POST',
@@ -18,7 +27,7 @@ const postData = async (url = '', data = {}) => {
     }
 };
 
-// Async GET
+/* Function to GET Project Data */
 const retrieveData = async (url = '') => {
     const request = await fetch(url);
     try {

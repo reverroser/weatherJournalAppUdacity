@@ -28,7 +28,7 @@ function listening() {
 //Spin up the server
 const server = app.listen(port, listening);
 
-// GET route
+// Callback function to complete GET '/all'
 app.get('/all', sendData);
 function sendData(req, res) {
     res.send(projectData);
@@ -37,5 +37,5 @@ function sendData(req, res) {
 // POST route
 app.post('/add', callBack);
 function callBack(req, res) {
-    res.send('POST recieved');
-};
+    res.send('POST recieved')
+}
