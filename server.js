@@ -1,3 +1,6 @@
+/* Empty Javascript object to act as an endpoint for all routes*/
+projectData = {};
+
 // Express to run server and routes
 const express = require('express');
 
@@ -24,3 +27,15 @@ function listening() {
 };
 //Spin up the server
 const server = app.listen(port, listening);
+
+// GET route
+app.get('/all', sendData);
+function sendData(req, res) {
+    res.send(projectData);
+}
+
+// POST route
+app.post('/add', callBack);
+function callBack(req, res) {
+    res.send('POST recieved');
+};
