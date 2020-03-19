@@ -9,7 +9,31 @@
 </head>
 
 <body>
+    <div id="app">
+        <h1>Weather Journal App</h1>
+        <div>
+            <div class="zipcode-container">
+                <h2>Zip code</h2>
+                <input type="text" class="zipcode-input" placeholder="Enter your zip code here">
+            </div>
+            <div class="feelings-container">
+                <h2>How are you feeling today?</h2>
+                <input type="text" class="feelings-input" placeholder="Write your feelings here">
+            </div>
+            <div class="generate-button-container">
+                <button id="generate" type="submit"> Generate </button>
+            </div>
+        </div>
 
+        <div class="holder entry">
+            <div class="title">Most Recent Entry</div>
+            <div id="entryHolder">
+                <div id="date"></div>
+                <div id="temp"></div>
+                <div id="content"></div>
+            </div>
+
+        </div>
 </body>
 <script src="app.js" type="text/javascript"></script>
 

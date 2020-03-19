@@ -1,40 +1,49 @@
-// Personal API Key for OpenWeatherMap API
-let apiKey = '373161157a0c9e297334f502c0cfadcd';
+const baseUrl = 'http://localhost:8000';
 
-// Event listener to add function to existing HTML DOM element
+const app = document.getElementById('app');
 
-/* Function called by event listener */
+// // Event listener to add function to existing HTML DOM element
 
-/* Function to GET Web API Data*/
+// /* Function called by event listener */
 
-/* Function to POST data */
-const postData = async (url = '', data = {}) => {
-    const response = await fetch(url, {
-        method: 'POST',
-        credentials: 'same-origin',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
+// /* Function to GET Web API Data*/
 
-    try {
-        const newData = await response.json();
-        return newData;
-    } catch (error) {
-        console.log('error', error);
-        // appropriately handle error
-    }
-};
+// /* Function to POST data */
+// const postData = async (url = '', data = {}) => {
+//     const response = await fetch(url, {
+//         method: 'POST',
+//         credentials: 'same-origin',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(data),
+//     });
 
-/* Function to GET Project Data */
-const retrieveData = async (url = '') => {
-    const request = await fetch(url);
-    try {
-        // into JSON
-        const allData = await request.json()
-    } catch (error) {
-        console.log('error', error);
-        // appropriately handle error
-    }
+//     try {
+//         const newData = await response.json();
+//         return newData;
+//     } catch (error) {
+//         console.log('error', error);
+//         // appropriately handle error
+//     }
+// };
+
+// /* Function to GET Project Data */
+const retrieveData = async (endpoint = '') => {
+  try {
+    const request = await fetch(`${baseUrl}${endpoint}`);
+    return request.json();
+  } catch (error) {
+    console.log('error', error);
+  }
 }
+
+const initList = async () => {
+  const data = await retrieveData('/all');
+  data.forEach(element => {
+    console.log(element, app);
+    // For each element create a new div in the dom
+  });
+}
+
+initList();
