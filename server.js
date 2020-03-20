@@ -1,18 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors');
+const fetch = require('node-fetch');
 
 const app = express();
-const projectData = [
-  {
-    mood: 'Happy',
-  },
-  {
-    mood: 'Sad',
-  }
-];
 const port = 8000;
-const openWeatherMapKey = '373161157a0c9e297334f502c0cfadcd';
+let projectData = {};
 
 // Functions
 function listening() {
@@ -25,9 +18,19 @@ function sendData(req, res) {
 }
 
 function addData(req, res) {
-  // TODO: update projectsData with req.body
-  console.log(req.body);
-  res.send('POST recieved');
+  const { api_key } = req.headers;
+  const { description, zipCode } = req.body;
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode}&appid=${api_key}`).then(
+    (response) => response.json().then((data) => {
+      projectData = {
+        date: new Date(),
+        description,
+        temp: data.main.temp,
+      }
+      res.json(projectData);
+    })
+  );
 }
 
 // Initialize the main project folder
@@ -41,7 +44,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.get('/all', sendData);
+app.get('/recent', sendData);
 app.post('/add', addData);
 
 // Spin up the server
